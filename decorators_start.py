@@ -1,4 +1,5 @@
 from datetime import datetime
+from operator import index
 from time import sleep
 
 
@@ -7,7 +8,7 @@ def decorator_func(func):
         time_start = datetime.now()
         func()
         sleep(3)
-        print(f'Время выполнения функции {some_func} - {datetime.now() - time_start}')
+        print(f'Время выполнения функции {some_func.__name__} - {datetime.now() - time_start}')
 
     return wrapper
 

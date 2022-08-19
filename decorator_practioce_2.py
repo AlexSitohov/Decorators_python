@@ -1,6 +1,7 @@
 try:
     def decorator_func(func):
         def wrapper(a, b):
+            print('wrapper content')
             return func(a, b)
 
         return wrapper
