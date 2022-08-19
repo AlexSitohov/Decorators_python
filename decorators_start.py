@@ -1,8 +1,13 @@
+from datetime import datetime
+from time import sleep
+
+
 def decorator_func(func):
     def wrapper():
-        print('начало')
+        time_start = datetime.now()
         func()
-        print('конец')
+        sleep(3)
+        print(f'Время выполнения функции {some_func} - {datetime.now() - time_start}')
 
     return wrapper
 
