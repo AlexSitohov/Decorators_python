@@ -3,8 +3,10 @@
 lstt = ['h', 'e', 'l', 'l', 'o']
 print(f'lst before - {id(lstt)}')
 lst_2 = lstt
-for i in enumerate(lstt):
-    lstt[i[0]] = i[1].upper()
+# for i in enumerate(lstt):
+#     lstt[i[0]] = i[1].upper()
+for i in lstt:
+    lstt[lstt.index(i)] = i.upper()
 
 print(lstt)
 print(f'lst after - {id(lstt)}', '\n')
