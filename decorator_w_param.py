@@ -2,7 +2,8 @@
 def outer_2(*bargs, **bkwargs):
     def outer(func):
         def wrapper(*args, **kwargs):
-            print(*bargs, **bkwargs)
+            g = bkwargs['g']
+            print(*bargs, g)
             return func(*args, **kwargs)
 
         return wrapper
@@ -11,11 +12,11 @@ def outer_2(*bargs, **bkwargs):
 
 
 # No logic just decorator w param for test
-@outer_2('Some', 'Text', 1, 2, 3, 4, 5, 6, 7, 8, 9, [*range(1, 6)])
+@outer_2('Some', 'Text', 1, 2, 3, 4, 5, 6, 7, 8, 9, [*range(1, 6)], g='asdf')
 def div(a, *args):
-    some_lst = []
-    for i in args:
-        some_lst.append(i ** a)
+    some_lst = [i ** a for i in args]
+    # for i in args:
+    #     some_lst.append(i ** a)
     return some_lst
 
 

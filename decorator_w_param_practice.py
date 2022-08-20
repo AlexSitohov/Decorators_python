@@ -1,6 +1,7 @@
-def outer_2(N):  # Параметры декоратора outer_2
+def outer_2(*bargs, **bkwargs):  # Параметры декоратора outer_2
     def outer(func):  # Функция div
         def wrapper(*args, **kwargs):  # Параметры функции div
+            N = bkwargs.get('N')
             for itr in range(1, N + 1):
                 try:
                     return func(*args, **kwargs)
@@ -12,7 +13,7 @@ def outer_2(N):  # Параметры декоратора outer_2
     return outer
 
 
-@outer_2(N=100)
+@outer_2(N=10)
 def div(*args):
     some_lst = []
     for i in args:
@@ -20,4 +21,4 @@ def div(*args):
     return some_lst
 
 
-print(div(1, 2, 3, 4, 'a'))
+print(div(1, 2, 3, 4, '1'))
