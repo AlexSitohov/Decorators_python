@@ -1,4 +1,6 @@
 from random import choice
+
+
 #
 # # изменение регистра у элементов списка(букв)
 # # объект тот же самый
@@ -32,37 +34,61 @@ from random import choice
 # print(next(i))
 
 
-# Бинарный поиск символа в неупорядоченной строке
-def decorator(func):
-    def wrapper(*args, **kwargs):
-        print(f'Цель еще не найдена...')
-        return func(*args, **kwargs)
+# # Бинарный поиск символа в неупорядоченной строке
+# def decorator(func):
+#     def wrapper(*args, **kwargs):
+#         print(f'Цель еще не найдена...')
+#         return func(*args, **kwargs)
+#
+#     return wrapper
+#
+#
+# @decorator
+# def poisk(some_str, some_str_2, target, iteraciya):
+#     some_str = sorted(some_str)
+#     some_str_2 = sorted(some_str_2)
+#     symbol = some_str[0]
+#     print(f'Итерация - {iteraciya} выберем наугад символ - {symbol}  из строки {some_str} длинной {len(some_str)}',
+#           '\n')
+#     if symbol == target:
+#         c = 1
+#         return f'Цель найдена за {iteraciya} итераций. Индекс цели в строке - {some_str_2.index(symbol)}'
+#     else:
+#         c = 1
+#         sl = some_str[:int((len(some_str) / 2))]
+#         sp = some_str[int((len(some_str) / 2)):]
+#         if target in sl:
+#             c = 1
+#
+#             return poisk(sl, some_str_2, target, iteraciya + 1)
+#         if target in sp:
+#             c = 1
+#
+#             return poisk(sp, some_str_2, target, iteraciya + 1)
+#
+#
+# some_str = [*range(1, 10_000_000 + 1)]
+# some_str_2 = some_str
+# print(poisk(some_str, some_str_2, target=18, iteraciya=1))
 
-    return wrapper
+
+def binar(lst, target, itr):
+    print(lst)
+    itr += 1
+    print(f'Итерация - {itr}')
+    start = lst[0]
+    end = lst[-1]
+    mid_element = (start + end) // 2
+    print(mid_element)
+    if mid_element == target:
+        return (mid_element)
+
+    if mid_element < target:
+        lst = lst[lst.index(mid_element)+1:]
+        return binar(lst, target, itr)
+    if mid_element > target:
+        lst = lst[:lst.index(mid_element)]
+        return binar(lst, target, itr)
 
 
-@decorator
-def poisk(some_str, some_str_2, target, iteraciya):
-    symbol = choice(some_str)
-    print(f'Итерация - {iteraciya} выберем наугад символ - {symbol}  из строки {some_str} длинной {len(some_str)}',
-          '\n')
-    if symbol == target:
-        c = 1
-        return f'Цель найдена за {iteraciya} итераций. Индекс цели в строке - {some_str_2.index(symbol)}'
-    else:
-        c = 1
-        sl = some_str[:int((len(some_str) / 2))]
-        sp = some_str[int((len(some_str) / 2)):]
-        if target in sl:
-            c = 1
-
-            return poisk(sl, some_str_2, target, iteraciya + 1)
-        if target in sp:
-            c = 1
-
-            return poisk(sp, some_str_2, target, iteraciya + 1)
-
-
-some_str = 'abcнdebcfdeolkjh'
-some_str_2 = some_str
-print(poisk(some_str, some_str_2, target='f', iteraciya=1))
+print(binar([*range(1, 10_000_000)], 8, itr=0))
